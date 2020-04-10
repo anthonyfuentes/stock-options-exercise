@@ -1,21 +1,5 @@
-(ns stock-options.casting.maps)
-
-(defn ->double
-  [value]
-  (try (Double/parseDouble value)
-       (catch Exception e)))
-
-(defn ->long
-  [value]
-  (try (Long/parseLong value)
-       (catch Exception e)))
-
-(defn ->number
-  [value]
-  (cond
-    (number? value) value
-    (string? value) (or (->long value) (->double value))
-    :else nil))
+(ns stock-options.casting.maps
+  (:require [stock-options.casting.numbers :refer [->number]]))
 
 (def cast-map
   {
